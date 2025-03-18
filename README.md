@@ -52,3 +52,15 @@ Run tests with: `./mvnw test`
 - `DELETE /api/events/{id}/cancel` - Cancel booking
 - `GET /api/events/history` - View booking history
 
+## Docker Installation
+
+1. Build the project to get the JAR file
+
+```
+./mvnw clean install
+```
+
+2. Build the Docker image
+```
+docker-compose up
+```
