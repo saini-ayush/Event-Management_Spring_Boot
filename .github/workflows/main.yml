@@ -43,19 +43,7 @@ jobs:
         context: .
         push: false
         tags: saini-ayush/event-spring:latest
-    
-    # - name: Stop PostgreSQL service
-    #   run: |
-    #     # Find and stop the PostgreSQL container used during build
-    #     docker ps -a
-    #     POSTGRES_CONTAINER=$(docker ps -q --filter "ancestor=postgres")
-    #     if [ ! -z "$POSTGRES_CONTAINER" ]; then
-    #       docker stop $POSTGRES_CONTAINER
-    #       docker rm $POSTGRES_CONTAINER
-    #     fi
-    #     # Wait to ensure the port is released
-    #     sleep 10
-    
+
     - name: Test with Docker Compose
       run: |
         
