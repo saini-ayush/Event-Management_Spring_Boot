@@ -18,7 +18,7 @@ jobs:
           POSTGRES_USER: postgres
           POSTGRES_DB: eventmanagement
         ports:
-          - 5432:5432
+          - 5433:5432
     
     steps:
     - uses: actions/checkout@v3
@@ -33,7 +33,7 @@ jobs:
     - name: Build with Maven
       run: mvn -B package --file pom.xml
       env:
-        SPRING_DATASOURCE_URL: jdbc:postgresql://localhost:5432/eventmanagement
+        SPRING_DATASOURCE_URL: jdbc:postgresql://localhost:5433/eventmanagement
         SPRING_DATASOURCE_USERNAME: postgres
         SPRING_DATASOURCE_PASSWORD: 12345678
     
@@ -44,17 +44,17 @@ jobs:
         push: false
         tags: saini-ayush/event-spring:latest
     
-    - name: Stop PostgreSQL service
-      run: |
-        # Find and stop the PostgreSQL container used during build
-        docker ps -a
-        POSTGRES_CONTAINER=$(docker ps -q --filter "ancestor=postgres")
-        if [ ! -z "$POSTGRES_CONTAINER" ]; then
-          docker stop $POSTGRES_CONTAINER
-          docker rm $POSTGRES_CONTAINER
-        fi
-        # Wait to ensure the port is released
-        sleep 10
+    # - name: Stop PostgreSQL service
+    #   run: |
+    #     # Find and stop the PostgreSQL container used during build
+    #     docker ps -a
+    #     POSTGRES_CONTAINER=$(docker ps -q --filter "ancestor=postgres")
+    #     if [ ! -z "$POSTGRES_CONTAINER" ]; then
+    #       docker stop $POSTGRES_CONTAINER
+    #       docker rm $POSTGRES_CONTAINER
+    #     fi
+    #     # Wait to ensure the port is released
+    #     sleep 10
     
     - name: Test with Docker Compose
       run: |
