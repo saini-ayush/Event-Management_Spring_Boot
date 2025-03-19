@@ -19,15 +19,8 @@ jobs:
           POSTGRES_DB: eventmanagement
         ports:
           - 5432:5432
-        # Health check to ensure PostgreSQL is ready
-        options: >-
-          --health-cmd pg_isready
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
     
     steps:
-    # Check out the repository
     - uses: actions/checkout@v3
     
     - name: Set up JDK 23
@@ -53,7 +46,7 @@ jobs:
     
     - name: Run Docker Compose
       run: |
-        docker-compose up -d
+        docker compose up -d
         # Wait for application to start
         sleep 30
         # You can add tests here
