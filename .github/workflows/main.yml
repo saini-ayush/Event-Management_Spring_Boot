@@ -49,7 +49,7 @@ jobs:
       with:
         context: .
         push: false
-        tags: saini-ayush/Event-Management_Spring_Boot:latest
+        tags: saini-ayush/event:latest
     
     - name: Run Docker Compose
       run: |
